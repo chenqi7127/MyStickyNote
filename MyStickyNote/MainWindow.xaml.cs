@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MyStickyNote.MyControls;
 
 namespace MyStickyNote
 {
@@ -23,6 +24,27 @@ namespace MyStickyNote
         public MainWindow()
         {
             InitializeComponent();
+            FirstNote.AddNoteAction = AddNote;
+            FirstNote.RemoveNoteAction = RemoveNote;
+        }
+
+        private void RemoveNote(TextStickyNote_UC obj)
+        {
+            if (NotesGrid.Children.Count > 1)
+            {
+                NotesGrid.Children.Remove(obj);
+                obj = null;
+            }
+        }
+
+        private void AddNote()
+        {
+            //todo maybe we need to add this to database ,think about the databse
+            TextStickyNote_UC sn = new TextStickyNote_UC();
+            sn.AddNoteAction = AddNote;
+            sn.RemoveNoteAction = RemoveNote;
+            sn.GotMouseCapture += StickyNote_UC_GotMouseCapture;
+            NotesGrid.Children.Add(sn);
         }
 
         private void StickyNote_UC_GotMouseCapture(object sender, MouseEventArgs e)

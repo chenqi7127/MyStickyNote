@@ -8,7 +8,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Background="Transparent" Height="350" Width="525" WindowStyle="None" WindowState="Maximized" AllowsTransparency="True">
     <Grid x:Name="NotesGrid">
-        <control:StickyNote_UC x:Name="test" GotMouseCapture="StickyNote_UC_GotMouseCapture" Margin="200,0,0,0"></control:StickyNote_UC>
-        <control:StickyNote_UC  x:Name="test2" GotMouseCapture="StickyNote_UC_GotMouseCapture" ></control:StickyNote_UC>
+        <control:TextStickyNote_UC x:Name="FirstNote" GotMouseCapture="StickyNote_UC_GotMouseCapture"></control:TextStickyNote_UC>
     </Grid>
 </Window>
