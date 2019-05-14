@@ -24,8 +24,8 @@ namespace MyStickyNote
         public MainWindow()
         {
             InitializeComponent();
-            FirstNote.AddNoteAction = AddNote;
-            FirstNote.RemoveNoteAction = RemoveNote;
+            //FirstNote.AddNoteAction = AddNote;
+            //FirstNote.RemoveNoteAction = RemoveNote;
         }
 
         private void RemoveNote(TextStickyNote_UC obj)
@@ -41,8 +41,8 @@ namespace MyStickyNote
         {
             //todo maybe we need to add this to database ,think about the databse
             TextStickyNote_UC sn = new TextStickyNote_UC();
-            sn.AddNoteAction = AddNote;
-            sn.RemoveNoteAction = RemoveNote;
+            //sn.AddNoteAction = AddNote;
+            //sn.RemoveNoteAction = RemoveNote;
             sn.GotMouseCapture += StickyNote_UC_GotMouseCapture;
             NotesGrid.Children.Add(sn);
         }

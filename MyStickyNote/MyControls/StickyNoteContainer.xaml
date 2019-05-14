@@ -37,7 +37,7 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid >
+    <Grid>
         <Canvas x:Name="BackCanvas">
             <Grid x:Name="StickyNote" Width="300" Height="300" Canvas.Top="0" Canvas.Left="0">
                 <Grid.RowDefinitions>
@@ -59,8 +59,8 @@
                         <Thumb x:Name="AboveTitle" DragDelta="Move_DragDelta"></Thumb>
                     </Grid>
                 </DockPanel>
-                <Border Grid.Row="1" Background="#C4E5FF" BorderBrush="#9E9EA0" BorderThickness="1,0,1,1">
-                    <ContentPresenter></ContentPresenter>
+                <Border Grid.Row="1" Background="White"  BorderBrush="#9E9EA0" BorderThickness="1,0,1,1">
+                    <ContentPresenter Content="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=UserControl},Path=TextContent}"></ContentPresenter>
                 </Border>
                 <!--拖动的部分-->
                 <Thumb DragDelta="Left_DragDelta" Margin="0,5,0,5" Grid.RowSpan="2" Width="5" HorizontalAlignment="Left" Cursor="SizeWE"></Thumb>

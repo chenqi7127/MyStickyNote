@@ -83,6 +83,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MyControls\ControlAttachProperty.cs" />
     <Compile Include="MyControls\ImageStickyNote.xaml.cs">
       <DependentUpon>ImageStickyNote.xaml</DependentUpon>
     </Compile>
@@ -123,6 +124,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MyIconFont\demo_unicode.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

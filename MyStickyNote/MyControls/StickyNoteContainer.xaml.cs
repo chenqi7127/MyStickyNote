@@ -24,6 +24,22 @@ namespace MyStickyNote.MyControls
         private double _ScreenHeigh = 0;
         public Action AddNoteAction;
         public Action<TextStickyNote_UC> RemoveNoteAction;
+
+        #region dp
+
+
+        public UIElement TextContent
+        {
+            get { return (UIElement)GetValue(TextContentProperty); }
+            set { SetValue(TextContentProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for TextContent.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TextContentProperty =
+            DependencyProperty.Register("TextContent", typeof(UIElement), typeof(StickyNoteContainer), new PropertyMetadata(null));
+
+
+        #endregion
         public StickyNoteContainer()
         {
             InitializeComponent();
@@ -144,7 +160,7 @@ namespace MyStickyNote.MyControls
         /// <param name="e"></param>
         private void RemoveNote_Click(object sender, RoutedEventArgs e)
         {
-            RemoveNoteAction?.Invoke(this);
+            //RemoveNoteAction?.Invoke(this);
         }
 
         /// <summary>
