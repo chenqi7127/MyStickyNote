@@ -85,7 +85,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\Models\StickyNote.cs" />
+    <Compile Include="CommonUnit\DataHandleI.cs" />
+    <Compile Include="CommonUnit\FileTools\IOHelp.cs" />
+    <Compile Include="Models\Enums\StickyNoteEnum.cs" />
+    <Compile Include="Models\Models\StickNoteBase.cs" />
+    <Compile Include="Models\Models\ImageStickyNote.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -148,7 +152,7 @@
     <Content Include="Resources\MyIconFont\demo_unicode.html" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CommonUnit\IOTools\" />
+    <Folder Include="CommonUnit\DataBaseTools\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
