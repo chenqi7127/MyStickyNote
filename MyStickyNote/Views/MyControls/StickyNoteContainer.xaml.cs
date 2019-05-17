@@ -22,8 +22,8 @@ namespace MyStickyNote.MyControls
     {
         private double _ScreenWidth = 0;
         private double _ScreenHeigh = 0;
-        public Action AddNoteAction;
-        public Action<TextStickyNote_UC> RemoveNoteAction;
+        public Action OnAddNote;
+        public Action OnRemoveNote;
 
         #region dp
 
@@ -160,7 +160,7 @@ namespace MyStickyNote.MyControls
         /// <param name="e"></param>
         private void RemoveNote_Click(object sender, RoutedEventArgs e)
         {
-            //RemoveNoteAction?.Invoke(this);
+            OnRemoveNote?.Invoke();
         }
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace MyStickyNote.MyControls
         /// <param name="e"></param>
         private void AddNote_Click(object sender, RoutedEventArgs e)
         {
-            AddNoteAction?.Invoke();
+            OnAddNote?.Invoke();
         }
 
         private void Title_DoubleClick(object sender, MouseButtonEventArgs e)

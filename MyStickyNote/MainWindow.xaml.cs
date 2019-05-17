@@ -14,6 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MyStickyNote.MyControls;
 using MyStickyNote.CommonUnit.FileTools;
+using MyStickyNote.CommonUnit;
+using Newtonsoft.Json;
+using MyStickyNote.Models.Models;
 
 namespace MyStickyNote
 {
@@ -25,8 +28,22 @@ namespace MyStickyNote
         public MainWindow()
         {
             InitializeComponent();
-            //FirstNote.AddNoteAction = AddNote;
-            //FirstNote.RemoveNoteAction = RemoveNote;
+            this.Loaded += MainWindow_Loaded;
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            //TODO load all notes if there is no note create a new textNote
+            var allNotes = IOHelp.Instance.GetContents(CommonString.SavePath);
+            if (allNotes.Count == 0)
+            {
+                AddNote();
+            }
+            foreach (var noteStr in allNotes)
+            {
+                var note = JsonConvert.DeserializeObject<StickNoteBase>(noteStr);
+                AddNote();
+            }
         }
 
         private void RemoveNote(TextStickyNote_UC obj)
@@ -40,10 +57,9 @@ namespace MyStickyNote
 
         private void AddNote()
         {
-            //todo maybe we need to add this to database ,think about the databse
             TextStickyNote_UC sn = new TextStickyNote_UC();
-            //sn.AddNoteAction = AddNote;
-            //sn.RemoveNoteAction = RemoveNote;
+            sn.OnAddNote = AddNote;
+            sn.OnRemoveNote = RemoveNote;
             sn.GotMouseCapture += StickyNote_UC_GotMouseCapture;
             NotesGrid.Children.Add(sn);
         }

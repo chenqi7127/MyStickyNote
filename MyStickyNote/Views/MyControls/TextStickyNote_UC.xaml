@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MyStickyNote.MyControls"
              mc:Ignorable="d">
     <Grid>
-        <local:StickyNoteContainer>
+        <local:StickyNoteContainer x:Name="NoteTopPart">
             <local:StickyNoteContainer.TextContent>
                 <RichTextBox ></RichTextBox>
             </local:StickyNoteContainer.TextContent>

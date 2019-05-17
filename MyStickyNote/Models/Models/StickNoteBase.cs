@@ -1,4 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
+using MyStickyNote.CommonUnit;
+using MyStickyNote.CommonUnit.FileTools;
 using MyStickyNote.Models.Enums;
 using Newtonsoft.Json;
 using System;
@@ -12,7 +14,7 @@ namespace MyStickyNote.Models.Models
         {
             UUID = System.Guid.NewGuid().ToString("N");
             //FilePath = @"D:\zhegeksd.txt";
-            FilePath = $@"{System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData)}\MyStickyNote\{UUID}.json";
+            FilePath = $@"{CommonString.SavePath}\{UUID}.json";
             //TODO set note's theme state location title
         }
         #region 属性
@@ -83,6 +85,11 @@ namespace MyStickyNote.Models.Models
         public override string ToString()
         {
             return JsonConvert.SerializeObject(this);
+        }
+
+        public void DeleteNote()
+        {
+            IOHelp.Instance.DeleteData(this);
         }
     }
 

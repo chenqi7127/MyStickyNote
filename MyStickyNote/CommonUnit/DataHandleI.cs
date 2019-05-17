@@ -16,5 +16,9 @@ namespace MyStickyNote.CommonUnit
         void SaveData(StickNoteBase needSave);
 
         void SaveAllDatas(List<StickNoteBase> needSave);
+
+        void DeleteData(StickNoteBase needSave);
+
+        void DeleteDatas(List<StickNoteBase> needSave);
     }
 }

@@ -23,16 +23,24 @@ namespace MyStickyNote.MyControls
     public partial class TextStickyNote_UC : UserControl
     {
         StickNoteBase textNote;
+        public Action OnAddNote;
+        public Action<TextStickyNote_UC> OnRemoveNote;
         public TextStickyNote_UC()
         {
             InitializeComponent();
-            //InitDataContext();
             this.Loaded += TextStickyNote_UC_Loaded;
         }
 
         private void TextStickyNote_UC_Loaded(object sender, RoutedEventArgs e)
         {
             InitDataContext();
+            InitEvent();
+        }
+
+        private void InitEvent()
+        {
+            NoteTopPart.OnAddNote = OnAddNote;
+            NoteTopPart.OnRemoveNote = () => { textNote.DeleteNote(); OnRemoveNote?.Invoke(this); };
         }
 
         private void InitDataContext()

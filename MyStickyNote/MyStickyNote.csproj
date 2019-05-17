@@ -89,6 +89,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CommonUnit\CommonString.cs" />
     <Compile Include="CommonUnit\DataHandleI.cs" />
     <Compile Include="CommonUnit\FileTools\IOHelp.cs" />
     <Compile Include="Models\Enums\StickyNoteEnum.cs" />

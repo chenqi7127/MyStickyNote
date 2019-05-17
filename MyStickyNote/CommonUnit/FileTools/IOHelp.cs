@@ -22,9 +22,11 @@ namespace MyStickyNote.CommonUnit.FileTools
            
         }
 
+
+
         public string GetContent(string filePath)
         {
-           return File.ReadAllText(filePath);
+            return File.ReadAllText(filePath);
         }
 
         public List<string> GetContents(string folderPath)
@@ -53,5 +55,18 @@ namespace MyStickyNote.CommonUnit.FileTools
             }
             File.WriteAllText(needSave.FilePath, needSave.ToString());
         }
+        public void DeleteData(StickNoteBase needDel)
+        {
+            File.Delete(needDel.FilePath);
+        }
+
+        public void DeleteDatas(List<StickNoteBase> needDels)
+        {
+            foreach (var del in needDels)
+            {
+                DeleteData(del);
+            }
+        }
+
     }
 }
