@@ -1,23 +1,23 @@
 ﻿using GalaSoft.MvvmLight;
 using MyStickyNote.Models.Enums;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 namespace MyStickyNote.Models.Models
 {
     public class StickNoteBase: ViewModelBase
     {
+        public StickNoteBase()
+        {
+            UUID = System.Guid.NewGuid().ToString("N");
+            //FilePath = @"D:\zhegeksd.txt";
+            FilePath = $@"{System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData)}\MyStickyNote\{UUID}.json";
+            //TODO set note's theme state location title
+        }
+        #region 属性
         public string UUID { get; set; }
         public string FilePath { get; set; }
-
-        private String noteContent;
-        /// <summary>
-        /// 便签的内容
-        /// </summary>
-        public String NoteContent
-        {
-            get { return noteContent; }
-            set { noteContent = value; RaisePropertyChanged("NoteContent"); }
-        }
 
         private NoteTheme noteTheme;
         /// <summary>
@@ -77,6 +77,49 @@ namespace MyStickyNote.Models.Models
         {
             get { return title; }
             set { title = value; RaisePropertyChanged("Title"); }
+        }
+        #endregion
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+    }
+
+    public class NotifyList<T>: List<T>
+    {
+        public event Action CollectionChanged;
+        private void Refresh()
+        {
+            if (CollectionChanged != null)
+                CollectionChanged.Invoke();
+        }
+        public void Add(T item)
+        {
+            base.Add(item);
+            Refresh();
+        }
+        public void Insert(int index, T item)
+        {
+            base.Insert(index, item);
+            Refresh();
+        }
+        public void Clear()
+        {
+            base.Clear();
+            Refresh();
+        }
+        public void RemoveAt(int index)
+        {
+            base.RemoveAt(index);
+            Refresh();
+        }
+        public bool Remove(T item)
+        {
+            var res = base.Remove(item);
+            if (res)
+                Refresh();
+            return res;
         }
     }
 }

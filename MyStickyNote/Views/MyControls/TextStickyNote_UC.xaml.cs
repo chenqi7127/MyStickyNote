@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MyStickyNote.CommonUnit.FileTools;
+using MyStickyNote.Models.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,11 +22,23 @@ namespace MyStickyNote.MyControls
     /// </summary>
     public partial class TextStickyNote_UC : UserControl
     {
+        StickNoteBase textNote;
         public TextStickyNote_UC()
         {
             InitializeComponent();
+            //InitDataContext();
+            this.Loaded += TextStickyNote_UC_Loaded;
         }
 
+        private void TextStickyNote_UC_Loaded(object sender, RoutedEventArgs e)
+        {
+            InitDataContext();
+        }
 
+        private void InitDataContext()
+        {
+            textNote = new StickNoteBase();
+            IOHelp.Instance.SaveData(textNote);
+        }
     }
 }

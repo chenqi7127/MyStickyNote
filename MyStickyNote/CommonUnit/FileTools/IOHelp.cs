@@ -37,7 +37,7 @@ namespace MyStickyNote.CommonUnit.FileTools
             return res;
         }
 
-        public void SaveAllDatas<T>(List<T> needSave) where T : StickNoteBase
+        public void SaveAllDatas(List<StickNoteBase> needSave)
         {
             foreach (var item in needSave)
             {
@@ -45,9 +45,13 @@ namespace MyStickyNote.CommonUnit.FileTools
             }
         }
 
-        public void SaveData<T>(T needSave) where T : StickNoteBase
+        public void SaveData(StickNoteBase needSave)
         {
-            File.WriteAllText(needSave.ToString(), needSave.FilePath);
+            if(!Directory.Exists(Path.GetDirectoryName(needSave.FilePath)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(needSave.FilePath));
+            }
+            File.WriteAllText(needSave.FilePath, needSave.ToString());
         }
     }
 }

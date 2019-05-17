@@ -13,8 +13,8 @@ namespace MyStickyNote.CommonUnit
 
         List<string> GetContents(string folderPath);
 
-        void SaveData<T>(T needSave)where T: StickNoteBase;
+        void SaveData(StickNoteBase needSave);
 
-        void SaveAllDatas<T>(List<T> needSave) where T : StickNoteBase;
+        void SaveAllDatas(List<StickNoteBase> needSave);
     }
 }

@@ -5,12 +5,18 @@ namespace MyStickyNote.Models.Models
 {
     public class ImageStickyNote: StickNoteBase
     {
-        private List<String> imageList;
+        private NotifyList<String> imageList;
 
-        public List<String> ImageList
+        public NotifyList<String> ImageList
         {
             get { return imageList; }
             set { imageList = value; RaisePropertyChanged("ImageList"); }
+        }
+
+        public ImageStickyNote():base()
+        {
+            this.Type = Enums.Notetype.ImageNote;
+            ImageList.CollectionChanged += () => { RaisePropertyChanged("ImageList"); };
         }
     }
 
