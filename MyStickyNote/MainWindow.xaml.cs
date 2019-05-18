@@ -1,22 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MyStickyNote.MyControls;
 using MyStickyNote.CommonUnit.FileTools;
 using MyStickyNote.CommonUnit;
 using Newtonsoft.Json;
 using MyStickyNote.Models.Models;
+using MyStickyNote.StickyNotes;
+using MyStickyNote.Views.StickyNotes;
 
 namespace MyStickyNote
 {
@@ -57,9 +47,14 @@ namespace MyStickyNote
 
         private void AddNote()
         {
-            TextStickyNote_UC sn = new TextStickyNote_UC();
-            sn.OnAddNote = AddNote;
-            sn.OnRemoveNote = RemoveNote;
+            //TextStickyNote_UC sn = new TextStickyNote_UC();
+            //sn.OnAddNote = AddNote;
+            //sn.OnRemoveNote = RemoveNote;
+            //sn.GotMouseCapture += StickyNote_UC_GotMouseCapture;
+            //NotesGrid.Children.Add(sn);
+            DateStickyNote sn = new DateStickyNote();
+            //sn.OnAddNote = AddNote;
+            //sn.OnRemoveNote = RemoveNote;
             sn.GotMouseCapture += StickyNote_UC_GotMouseCapture;
             NotesGrid.Children.Add(sn);
         }

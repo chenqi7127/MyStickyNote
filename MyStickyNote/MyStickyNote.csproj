@@ -99,28 +99,43 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\MyControls\ImageStickyNote.xaml">
+    <Page Include="Views\StickyNotes\DateNote\DateStickyNote.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MyControls\StickyNoteContainer.xaml">
+    <Page Include="Views\StickyNotes\DateNote\NoteDatePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MyControls\TextStickyNote_UC.xaml">
+    <Page Include="Views\StickyNotes\ImageStickyNote.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StickyNotes\StickyNoteContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StickyNotes\TextStickyNote_UC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\MyControls\ControlAttachProperty.cs" />
-    <Compile Include="Views\MyControls\ImageStickyNote.xaml.cs">
+    <Compile Include="Views\StickyNotes\ControlAttachProperty.cs" />
+    <Compile Include="Views\StickyNotes\DateNote\DateStickyNote.xaml.cs">
+      <DependentUpon>DateStickyNote.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StickyNotes\DateNote\NoteDatePicker.xaml.cs">
+      <DependentUpon>NoteDatePicker.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\StickyNotes\ImageStickyNote.xaml.cs">
       <DependentUpon>ImageStickyNote.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MyControls\StickyNoteContainer.xaml.cs">
+    <Compile Include="Views\StickyNotes\StickyNoteContainer.xaml.cs">
       <DependentUpon>StickyNoteContainer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MyControls\TextStickyNote_UC.xaml.cs">
+    <Compile Include="Views\StickyNotes\TextStickyNote_UC.xaml.cs">
       <DependentUpon>TextStickyNote_UC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">

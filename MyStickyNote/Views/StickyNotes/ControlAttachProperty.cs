@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace MyStickyNote.MyControls
+namespace MyStickyNote.Views.StickyNotes
 {
     public class ControlAttachProperty
     {

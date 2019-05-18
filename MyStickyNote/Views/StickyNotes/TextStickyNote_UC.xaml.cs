@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MyStickyNote.MyControls
+namespace MyStickyNote.StickyNotes
 {
     /// <summary>
     /// StickyNote_UC.xaml 的交互逻辑

@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyStickyNote"
-        xmlns:control="clr-namespace:MyStickyNote.MyControls"
         mc:Ignorable="d"
         Title="MainWindow" Background="Transparent" Height="350" Width="525" WindowStyle="None" WindowState="Maximized" AllowsTransparency="True">
     <Grid x:Name="NotesGrid">

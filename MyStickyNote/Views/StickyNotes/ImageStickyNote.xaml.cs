@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MyStickyNote.MyControls
+namespace MyStickyNote.View.StickyNotes
 {
     /// <summary>
     /// ImageStickyNote.xaml 的交互逻辑

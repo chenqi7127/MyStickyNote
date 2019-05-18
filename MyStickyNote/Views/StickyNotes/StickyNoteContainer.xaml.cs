@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MyStickyNote.MyControls
+namespace MyStickyNote.Views.StickyNotes
 {
     /// <summary>
     /// StickyNoteContainer.xaml 的交互逻辑
@@ -40,6 +40,7 @@ namespace MyStickyNote.MyControls
 
 
         #endregion
+
         public StickyNoteContainer()
         {
             InitializeComponent();
@@ -64,39 +65,47 @@ namespace MyStickyNote.MyControls
         private void Left(double horizontalChange)
         {
             double left = Canvas.GetLeft(StickyNote);
-            var width = StickyNote.Width - horizontalChange;
+            var height = StickyNote.ActualHeight;
+            var width = StickyNote.ActualWidth - horizontalChange;
             if (width >= 200)
             {
                 StickyNote.Width = width;
+                StickyNote.Height = height;
                 Canvas.SetLeft(StickyNote, left + horizontalChange);
             }
 
         }
         private void Right(double horizontalChange)
         {
-            var width = StickyNote.Width + horizontalChange;
+            var height = StickyNote.ActualHeight;
+            var width = StickyNote.ActualWidth + horizontalChange;
             if (width >= 200)
             {
                 StickyNote.Width = width;
+                StickyNote.Height = height;
             }
         }
         private void Top(double horizontalChange)
         {
+            var width = StickyNote.ActualWidth;
             double top = Canvas.GetTop(StickyNote);
-            var height = StickyNote.Height - horizontalChange;
+            var height = StickyNote.ActualHeight - horizontalChange;
             if (height >= 100)
             {
                 StickyNote.Height = height;
+                StickyNote.Width = width;
                 Canvas.SetTop(StickyNote, top + horizontalChange);
             }
         }
 
         private void Bottom(double horizontalChange)
         {
-            var height = StickyNote.Height + horizontalChange;
+            var width = StickyNote.ActualWidth;
+            var height = StickyNote.ActualHeight + horizontalChange;
             if (height >= 100)
             {
                 StickyNote.Height = height;
+                StickyNote.Width = width;
             }
         }
 
