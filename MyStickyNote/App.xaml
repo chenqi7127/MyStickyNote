@@ -1,12 +1,16 @@
 ﻿<Application x:Class="MyStickyNote.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:MyStickyNote" StartupUri="MainWindow.xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d" xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
   <Application.Resources>
-        <Style x:Key="FIcon" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="pack://application:,,,/MyStickyNote;component/Resources/MyIconFont/#iconfont">
-            </Setter>
-            <Setter Property="TextAlignment" Value="Center" />
-            <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="FontSize" Value="15" />
-        </Style>
+        <ResourceDictionary>
+            <Style x:Key="FIcon" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="pack://application:,,,/MyStickyNote;component/Resources/MyIconFont/#iconfont"></Setter>
+                <Setter Property="TextAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="15" />
+            </Style>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/NoteThemes/Theme.DarkBlue.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

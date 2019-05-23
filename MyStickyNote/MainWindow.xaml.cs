@@ -47,16 +47,16 @@ namespace MyStickyNote
 
         private void AddNote()
         {
-            //TextStickyNote_UC sn = new TextStickyNote_UC();
-            //sn.OnAddNote = AddNote;
-            //sn.OnRemoveNote = RemoveNote;
-            //sn.GotMouseCapture += StickyNote_UC_GotMouseCapture;
-            //NotesGrid.Children.Add(sn);
-            DateStickyNote sn = new DateStickyNote();
-            //sn.OnAddNote = AddNote;
-            //sn.OnRemoveNote = RemoveNote;
+            TextStickyNote_UC sn = new TextStickyNote_UC();
+            sn.OnAddNote = AddNote;
+            sn.OnRemoveNote = RemoveNote;
             sn.GotMouseCapture += StickyNote_UC_GotMouseCapture;
             NotesGrid.Children.Add(sn);
+            //DateStickyNote sn = new DateStickyNote();
+            ////sn.OnAddNote = AddNote;
+            ////sn.OnRemoveNote = RemoveNote;
+            //sn.GotMouseCapture += StickyNote_UC_GotMouseCapture;
+            //NotesGrid.Children.Add(sn);
         }
 
         private void StickyNote_UC_GotMouseCapture(object sender, MouseEventArgs e)

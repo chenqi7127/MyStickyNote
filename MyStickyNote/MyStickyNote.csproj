@@ -99,6 +99,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NoteThemes\Theme.Black.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NoteThemes\Theme.DarkBlue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\StickyNotes\DateNote\DateStickyNote.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -121,6 +129,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NoteThemes\ThemeManager.cs" />
     <Compile Include="Views\StickyNotes\ControlAttachProperty.cs" />
     <Compile Include="Views\StickyNotes\DateNote\DateStickyNote.xaml.cs">
       <DependentUpon>DateStickyNote.xaml</DependentUpon>

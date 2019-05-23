@@ -44,22 +44,23 @@
                     <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <DockPanel Height="30" x:Name="NoteTitle" Background="#007ACC" LastChildFill="True">
+                <DockPanel Height="30" x:Name="NoteTitle" Background="{DynamicResource TitleBackgroundColor}" LastChildFill="True">
                     <Button Click="AddNote_Click" Style="{StaticResource IconFontButton}"  Padding="5" DockPanel.Dock="Left">
-                        <TextBlock Foreground="White" Style="{StaticResource FIcon}">&#xe514;</TextBlock>
+                        <TextBlock Foreground="{DynamicResource ButtonForegroundColor}" Style="{StaticResource FIcon}">&#xe514;</TextBlock>
                     </Button>
                     <Button Click="RemoveNote_Click" Style="{StaticResource IconFontButton}"  Padding="5" DockPanel.Dock="Right">
-                        <TextBlock Foreground="White" Style="{StaticResource FIcon}">&#xe625;</TextBlock>
+                        <TextBlock Foreground="{DynamicResource ButtonForegroundColor}" Style="{StaticResource FIcon}">&#xe625;</TextBlock>
                     </Button>
                     <Button Click="ChangeNoteStyle_Click" Style="{StaticResource IconFontButton}"  Padding="5" DockPanel.Dock="Right">
-                        <TextBlock Foreground="White" Style="{StaticResource FIcon}">&#xe676;</TextBlock>
+                        <TextBlock Foreground="{DynamicResource ButtonForegroundColor}" Style="{StaticResource FIcon}">&#xe676;</TextBlock>
                     </Button>
                     <Grid PreviewMouseLeftButtonDown="Title_DoubleClick" >
-                        <TextBox Keyboard.KeyDown="FinishedInput" LostKeyboardFocus="QuitTitleEdit" Width="auto" Background="Transparent" BorderBrush="Transparent" x:Name="Title" Foreground="White" FontSize="16" VerticalAlignment="Center"></TextBox>
+                        <TextBox Keyboard.KeyDown="FinishedInput" LostKeyboardFocus="QuitTitleEdit" Width="auto" Background="Transparent" BorderBrush="Transparent" x:Name="Title" 
+                                 Foreground="{DynamicResource ButtonForegroundColor}" FontSize="16" VerticalAlignment="Center"></TextBox>
                         <Thumb x:Name="AboveTitle" DragDelta="Move_DragDelta"></Thumb>
                     </Grid>
                 </DockPanel>
-                <Border Grid.Row="1" Background="White"  BorderBrush="#9E9EA0" BorderThickness="1,0,1,1">
+                <Border Grid.Row="1" Background="{DynamicResource ContentBackgroundColor}"  BorderBrush="{DynamicResource ContentBorderBrushColor}" BorderThickness="1,0,1,1">
                     <Grid>
                         <ContentPresenter Content="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=UserControl},Path=TextContent}"></ContentPresenter>
                     </Grid>
