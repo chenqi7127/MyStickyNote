@@ -9,7 +9,7 @@
                 <Setter Property="FontSize" Value="15" />
             </Style>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/NoteThemes/Theme.DarkBlue.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Resources/NoteThemes/Theme.DarkBlue.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

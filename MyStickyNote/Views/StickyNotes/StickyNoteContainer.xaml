@@ -39,7 +39,7 @@
     </UserControl.Resources>
     <Grid>
         <Canvas x:Name="BackCanvas">
-            <Grid x:Name="StickyNote" Width="auto" Height="auto" Canvas.Top="0" Canvas.Left="0">
+            <Grid x:Name="StickyNote" MinWidth="200" MinHeight="100" Width="auto" Height="auto" Canvas.Top="0" Canvas.Left="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition></RowDefinition>
@@ -54,14 +54,18 @@
                     <Button Click="ChangeNoteStyle_Click" Style="{StaticResource IconFontButton}"  Padding="5" DockPanel.Dock="Right">
                         <TextBlock Foreground="{DynamicResource ButtonForegroundColor}" Style="{StaticResource FIcon}">&#xe676;</TextBlock>
                     </Button>
+
                     <Grid PreviewMouseLeftButtonDown="Title_DoubleClick" >
                         <TextBox Keyboard.KeyDown="FinishedInput" LostKeyboardFocus="QuitTitleEdit" Width="auto" Background="Transparent" BorderBrush="Transparent" x:Name="Title" 
                                  Foreground="{DynamicResource ButtonForegroundColor}" FontSize="16" VerticalAlignment="Center"></TextBox>
                         <Thumb x:Name="AboveTitle" DragDelta="Move_DragDelta"></Thumb>
                     </Grid>
                 </DockPanel>
-                <Border Grid.Row="1" Background="{DynamicResource ContentBackgroundColor}"  BorderBrush="{DynamicResource ContentBorderBrushColor}" BorderThickness="1,0,1,1">
+                <Border x:Name="ContentBorder" Grid.Row="1" Background="{DynamicResource ContentBackgroundColor}"  BorderBrush="{DynamicResource ContentBorderBrushColor}" BorderThickness="1,0,1,1">
                     <Grid>
+                        <Popup Placement="Top"  Width="{Binding ElementName=StickyNote,Path=ActualWidth}" Height="30">
+                            
+                        </Popup>
                         <ContentPresenter Content="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=UserControl},Path=TextContent}"></ContentPresenter>
                     </Grid>
                 </Border>

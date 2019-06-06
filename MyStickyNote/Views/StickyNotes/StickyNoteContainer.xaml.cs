@@ -201,7 +201,7 @@ namespace MyStickyNote.Views.StickyNotes
         private void ChangeNoteStyle_Click(object sender, RoutedEventArgs e)
         {
             //todo change Color or type like image or link to file or web
-            ThemeManager.Instance.SetThemeResource(new Uri(@"pack://application:,,,/NoteThemes/Theme.Black.xaml"));
+            ThemeManager.Instance.SetThemeResource(ThemeType.Black);
         }
 
         private void FinishedInput(object sender, KeyEventArgs e)
