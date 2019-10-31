@@ -38,9 +38,9 @@ namespace MyStickyNote
 
         private void RemoveNote(TextStickyNote_UC obj)
         {
-            if (NotesGrid.Children.Count > 1)
+            if (NotesCanvas.Children.Count > 1)
             {
-                NotesGrid.Children.Remove(obj);
+                NotesCanvas.Children.Remove(obj);
                 obj = null;
             }
         }
@@ -51,7 +51,7 @@ namespace MyStickyNote
             sn.OnAddNote = AddNote;
             sn.OnRemoveNote = RemoveNote;
             sn.GotMouseCapture += StickyNote_UC_GotMouseCapture;
-            NotesGrid.Children.Add(sn);
+            NotesCanvas.Children.Add(sn);
             //DateStickyNote sn = new DateStickyNote();
             ////sn.OnAddNote = AddNote;
             ////sn.OnRemoveNote = RemoveNote;
@@ -61,7 +61,7 @@ namespace MyStickyNote
 
         private void StickyNote_UC_GotMouseCapture(object sender, MouseEventArgs e)
         {
-            foreach (UIElement item in NotesGrid.Children)
+            foreach (UIElement item in NotesCanvas.Children)
             {
                 Grid.SetZIndex(item, 0);
             } 

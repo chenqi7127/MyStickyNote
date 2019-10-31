@@ -21,8 +21,6 @@ namespace MyStickyNote.Views.StickyNotes
     /// </summary>
     public partial class StickyNoteContainer : UserControl
     {
-        private double _ScreenWidth = 0;
-        private double _ScreenHeigh = 0;
         public Action OnAddNote;
         public Action OnRemoveNote;
 
@@ -45,10 +43,6 @@ namespace MyStickyNote.Views.StickyNotes
         public StickyNoteContainer()
         {
             InitializeComponent();
-            _ScreenHeigh = SystemParameters.PrimaryScreenHeight;
-            _ScreenWidth = SystemParameters.PrimaryScreenWidth;
-            BackCanvas.Width = _ScreenWidth;
-            BackCanvas.Height = _ScreenHeigh;
             this.GotKeyboardFocus += NoteContent_GotFocus;
             this.LostKeyboardFocus += NoteContent_LostFocus;
         }
@@ -65,57 +59,46 @@ namespace MyStickyNote.Views.StickyNotes
         #region 拖拽部分
         private void Left(double horizontalChange)
         {
-            double left = Canvas.GetLeft(StickyNote);
-            var height = StickyNote.ActualHeight;
-            var width = StickyNote.ActualWidth - horizontalChange;
+            var width = this.ActualWidth - horizontalChange;
             if (width >= 200)
             {
-                StickyNote.Width = width;
-                StickyNote.Height = height;
-                Canvas.SetLeft(StickyNote, left + horizontalChange);
+                this.Width = width;
+                this.Margin = new Thickness(this.Margin.Left + horizontalChange, this.Margin.Top, 0, 0);
             }
-
         }
         private void Right(double horizontalChange)
         {
-            var height = StickyNote.ActualHeight;
-            var width = StickyNote.ActualWidth + horizontalChange;
+            var width = this.ActualWidth + horizontalChange;
             if (width >= 200)
             {
-                StickyNote.Width = width;
-                StickyNote.Height = height;
+                this.Width = width;
             }
         }
         private void Top(double horizontalChange)
         {
-            var width = StickyNote.ActualWidth;
-            double top = Canvas.GetTop(StickyNote);
-            var height = StickyNote.ActualHeight - horizontalChange;
+            var height = this.ActualHeight - horizontalChange;
             if (height >= 100)
             {
-                StickyNote.Height = height;
-                StickyNote.Width = width;
-                Canvas.SetTop(StickyNote, top + horizontalChange);
+                this.Height = height;
+                this.Margin = new Thickness(this.Margin.Left, this.Margin.Top + horizontalChange, 0, 0);
             }
         }
 
         private void Bottom(double horizontalChange)
         {
-            var width = StickyNote.ActualWidth;
-            var height = StickyNote.ActualHeight + horizontalChange;
+            var height = this.ActualHeight + horizontalChange;
             if (height >= 100)
             {
-                StickyNote.Height = height;
-                StickyNote.Width = width;
+                this.Height = height;
             }
         }
 
         private void Move_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
         {
-            double left = Canvas.GetLeft(StickyNote);
-            Canvas.SetLeft(StickyNote, left + e.HorizontalChange);
-            double top = Canvas.GetTop(StickyNote);
-            Canvas.SetTop(StickyNote, top + e.VerticalChange);
+            var thickness = new Thickness();
+            thickness.Left = this.Margin.Left + e.HorizontalChange;
+            thickness.Top = this.Margin.Top + e.VerticalChange;
+            this.Margin = thickness;
         }
 
         private void Left_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)

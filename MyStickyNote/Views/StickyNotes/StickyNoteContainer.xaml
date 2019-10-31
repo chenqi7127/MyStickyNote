@@ -38,47 +38,44 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <Canvas x:Name="BackCanvas">
-            <Grid x:Name="StickyNote" MinWidth="200" MinHeight="100" Width="auto" Height="auto" Canvas.Top="0" Canvas.Left="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <DockPanel Height="30" x:Name="NoteTitle" Background="{DynamicResource TitleBackgroundColor}" LastChildFill="True">
-                    <Button Click="AddNote_Click" Style="{StaticResource IconFontButton}"  Padding="5" DockPanel.Dock="Left">
-                        <TextBlock Foreground="{DynamicResource ButtonForegroundColor}" Style="{StaticResource FIcon}">&#xe514;</TextBlock>
-                    </Button>
-                    <Button Click="RemoveNote_Click" Style="{StaticResource IconFontButton}"  Padding="5" DockPanel.Dock="Right">
-                        <TextBlock Foreground="{DynamicResource ButtonForegroundColor}" Style="{StaticResource FIcon}">&#xe625;</TextBlock>
-                    </Button>
-                    <Button Click="ChangeNoteStyle_Click" Style="{StaticResource IconFontButton}"  Padding="5" DockPanel.Dock="Right">
-                        <TextBlock Foreground="{DynamicResource ButtonForegroundColor}" Style="{StaticResource FIcon}">&#xe676;</TextBlock>
-                    </Button>
-
-                    <Grid PreviewMouseLeftButtonDown="Title_DoubleClick" >
-                        <TextBox Keyboard.KeyDown="FinishedInput" LostKeyboardFocus="QuitTitleEdit" Width="auto" Background="Transparent" BorderBrush="Transparent" x:Name="Title" 
+        <Grid x:Name="StickyNote" MinWidth="200" MinHeight="200" Canvas.Top="0" Canvas.Left="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <DockPanel Height="30" x:Name="NoteTitle" Background="{DynamicResource TitleBackgroundColor}" LastChildFill="True">
+                <Button Click="AddNote_Click" Style="{StaticResource IconFontButton}"  Padding="5" DockPanel.Dock="Left">
+                    <TextBlock Foreground="{DynamicResource ButtonForegroundColor}" Style="{StaticResource FIcon}">&#xe514;</TextBlock>
+                </Button>
+                <Button Click="RemoveNote_Click" Style="{StaticResource IconFontButton}"  Padding="5" DockPanel.Dock="Right">
+                    <TextBlock Foreground="{DynamicResource ButtonForegroundColor}" Style="{StaticResource FIcon}">&#xe625;</TextBlock>
+                </Button>
+                <Button Click="ChangeNoteStyle_Click" Style="{StaticResource IconFontButton}"  Padding="5" DockPanel.Dock="Right">
+                    <TextBlock Foreground="{DynamicResource ButtonForegroundColor}" Style="{StaticResource FIcon}">&#xe676;</TextBlock>
+                </Button>
+                <Grid PreviewMouseLeftButtonDown="Title_DoubleClick" >
+                    <TextBox Keyboard.KeyDown="FinishedInput" LostKeyboardFocus="QuitTitleEdit" Width="auto" Background="Transparent" BorderBrush="Transparent" x:Name="Title" 
                                  Foreground="{DynamicResource ButtonForegroundColor}" FontSize="16" VerticalAlignment="Center"></TextBox>
-                        <Thumb x:Name="AboveTitle" DragDelta="Move_DragDelta"></Thumb>
-                    </Grid>
-                </DockPanel>
-                <Border x:Name="ContentBorder" Grid.Row="1" Background="{DynamicResource ContentBackgroundColor}"  BorderBrush="{DynamicResource ContentBorderBrushColor}" BorderThickness="1,0,1,1">
-                    <Grid>
-                        <Popup Placement="Top"  Width="{Binding ElementName=StickyNote,Path=ActualWidth}" Height="30">
-                            
-                        </Popup>
-                        <ContentPresenter Content="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=UserControl},Path=TextContent}"></ContentPresenter>
-                    </Grid>
-                </Border>
-                <!--拖动的部分-->
-                <Thumb DragDelta="Left_DragDelta" Margin="0,5,0,5" Grid.RowSpan="2" Width="5" HorizontalAlignment="Left" Cursor="SizeWE"></Thumb>
-                <Thumb DragDelta="LeftTop_DragDelta" Width="5" Height="5" HorizontalAlignment="Left" VerticalAlignment="Top" Cursor="SizeNWSE"></Thumb>
-                <Thumb DragDelta="RightTop_DragDelta" Width="5" Height="5" HorizontalAlignment="Right" VerticalAlignment="Top" Cursor="SizeNESW"></Thumb>
-                <Thumb DragDelta="Top_DragDelta" Margin="5,0,5,0" Height="5" VerticalAlignment="Top" Cursor="SizeNS"></Thumb>
-                <Thumb DragDelta="Right_DragDelta" Margin="0,5,0,5" Grid.RowSpan="2" Width="5" HorizontalAlignment="Right" Cursor="SizeWE"></Thumb>
-                <Thumb DragDelta="RightBottom_DragDelta" Grid.Row="1" Width="5" Height="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Cursor="SizeNWSE"></Thumb>
-                <Thumb DragDelta="LeftBottom_DragDelta" Grid.Row="1" Width="5" Height="5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Cursor="SizeNESW"></Thumb>
-                <Thumb DragDelta="Bottom_DragDelta" Margin="5,0,5,0" Grid.Row="1" Height="5" VerticalAlignment="Bottom" Cursor="SizeNS"></Thumb>
-            </Grid>
-        </Canvas>
+                    <Thumb x:Name="AboveTitle" DragDelta="Move_DragDelta"></Thumb>
+                </Grid>
+            </DockPanel>
+            <Border x:Name="ContentBorder" Grid.Row="1" Background="{DynamicResource ContentBackgroundColor}"  BorderBrush="{DynamicResource ContentBorderBrushColor}" BorderThickness="1,0,1,1">
+                <Grid>
+                    <Popup Placement="Top"  Width="{Binding ElementName=StickyNote,Path=ActualWidth}" Height="30">
+
+                    </Popup>
+                    <ContentPresenter Content="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=UserControl},Path=TextContent}"></ContentPresenter>
+                </Grid>
+            </Border>
+            <!--拖动的部分-->
+            <Thumb DragDelta="Left_DragDelta" Margin="0,5,0,5" Grid.RowSpan="2" Width="5" HorizontalAlignment="Left" Cursor="SizeWE"></Thumb>
+            <Thumb DragDelta="LeftTop_DragDelta" Width="5" Height="5" HorizontalAlignment="Left" VerticalAlignment="Top" Cursor="SizeNWSE"></Thumb>
+            <Thumb DragDelta="RightTop_DragDelta" Width="5" Height="5" HorizontalAlignment="Right" VerticalAlignment="Top" Cursor="SizeNESW"></Thumb>
+            <Thumb DragDelta="Top_DragDelta" Margin="5,0,5,0" Height="5" VerticalAlignment="Top" Cursor="SizeNS"></Thumb>
+            <Thumb DragDelta="Right_DragDelta" Margin="0,5,0,5" Grid.RowSpan="2" Width="5" HorizontalAlignment="Right" Cursor="SizeWE"></Thumb>
+            <Thumb DragDelta="RightBottom_DragDelta" Grid.Row="1" Width="5" Height="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Cursor="SizeNWSE"></Thumb>
+            <Thumb DragDelta="LeftBottom_DragDelta" Grid.Row="1" Width="5" Height="5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Cursor="SizeNESW"></Thumb>
+            <Thumb DragDelta="Bottom_DragDelta" Margin="5,0,5,0" Grid.Row="1" Height="5" VerticalAlignment="Bottom" Cursor="SizeNS"></Thumb>
+        </Grid>
     </Grid>
 </UserControl>

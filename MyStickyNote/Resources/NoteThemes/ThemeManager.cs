@@ -35,10 +35,10 @@ namespace MyStickyNote.NoteThemes
         private void InitThemeDic()
         {
             _themeDic = new Dictionary<ThemeType, ResourceDictionary>();
-            _themeDic.Add(ThemeType.DarkBlue,new ResourceDictionary{Source = new Uri(@"pack://application:,,,/NoteThemes/Theme.DarkBlue.xaml") });
-            _themeDic.Add(ThemeType.Black, new ResourceDictionary { Source = new Uri(@"pack://application:,,,/NoteThemes/Theme.Black.xaml") });
-            _themeDic.Add(ThemeType.Gray, new ResourceDictionary { Source = new Uri(@"pack://application:,,,/NoteThemes/Theme.Gray.xaml") });
-            _themeDic.Add(ThemeType.Green, new ResourceDictionary { Source = new Uri(@"pack://application:,,,/NoteThemes/Theme.Green.xaml") });
+            _themeDic.Add(ThemeType.DarkBlue, new ResourceDictionary { Source = new Uri(@"pack://application:,,,/Resources/NoteThemes/Theme.DarkBlue.xaml") });
+            _themeDic.Add(ThemeType.Black, new ResourceDictionary { Source = new Uri(@"pack://application:,,,/Resources/NoteThemes/Theme.Black.xaml") });
+            //_themeDic.Add(ThemeType.Gray, new ResourceDictionary { Source = new Uri(@"pack://application:,,,/Resources/NoteThemes/Theme.Gray.xaml") });
+            //_themeDic.Add(ThemeType.Green, new ResourceDictionary { Source = new Uri(@"pack://application:,,,/Resources/NoteThemes/Theme.Green.xaml") });
         }
 
         private ResourceDictionary GetThemeResourceDictionary()

@@ -46,7 +46,7 @@ namespace MyStickyNote.StickyNotes
         private void InitDataContext()
         {
             textNote = new StickNoteBase();
-            IOHelp.Instance.SaveData(textNote);
+            //IOHelp.Instance.SaveData(textNote);
         }
     }
 }
