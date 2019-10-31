@@ -31,12 +31,21 @@ namespace MyStickyNote.CommonUnit.FileTools
 
         public List<string> GetContents(string folderPath)
         {
+            CheckNeedCreateDirectory(folderPath);
             List<string> res = new List<string>();
             foreach (var item in new DirectoryInfo(folderPath).GetFiles())
             {
                 res.Add(GetContent(item.FullName));
             }
             return res;
+        }
+
+        private void CheckNeedCreateDirectory(string folder)
+        {
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
         }
 
         public void SaveAllDatas(List<StickNoteBase> needSave)
@@ -49,10 +58,7 @@ namespace MyStickyNote.CommonUnit.FileTools
 
         public void SaveData(StickNoteBase needSave)
         {
-            if(!Directory.Exists(Path.GetDirectoryName(needSave.FilePath)))
-            {
-                Directory.CreateDirectory(Path.GetDirectoryName(needSave.FilePath));
-            }
+            CheckNeedCreateDirectory(Path.GetDirectoryName(needSave.FilePath));
             File.WriteAllText(needSave.FilePath, needSave.ToString());
         }
         public void DeleteData(StickNoteBase needDel)
