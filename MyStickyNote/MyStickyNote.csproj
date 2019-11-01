@@ -183,6 +183,7 @@
   <ItemGroup>
     <Folder Include="CommonUnit\DataBaseTools\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Views\StickyNotes\PaintNote\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

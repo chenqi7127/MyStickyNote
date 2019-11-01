@@ -51,12 +51,16 @@ namespace MyStickyNote
             sn.OnAddNote = AddNote;
             sn.OnRemoveNote = RemoveNote;
             sn.GotMouseCapture += StickyNote_UC_GotMouseCapture;
+            //todo 这里最好加上失去焦点的时候的操作 不用遍历全部便签
+            //sn.LostMouseCapture+=
             NotesGrid.Children.Add(sn);
+            #region Add DateStickyNote
             //DateStickyNote sn = new DateStickyNote();
             ////sn.OnAddNote = AddNote;
             ////sn.OnRemoveNote = RemoveNote;
             //sn.GotMouseCapture += StickyNote_UC_GotMouseCapture;
             //NotesGrid.Children.Add(sn);
+            #endregion
         }
 
         private void StickyNote_UC_GotMouseCapture(object sender, MouseEventArgs e)
