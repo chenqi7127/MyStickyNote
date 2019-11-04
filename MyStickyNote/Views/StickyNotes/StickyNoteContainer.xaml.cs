@@ -38,6 +38,20 @@ namespace MyStickyNote.Views.StickyNotes
             DependencyProperty.Register("TextContent", typeof(UIElement), typeof(StickyNoteContainer), new PropertyMetadata(null));
 
 
+
+
+        public UIElement HeaderButton
+        {
+            get { return (UIElement)GetValue(HeaderButtonProperty); }
+            set { SetValue(HeaderButtonProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for HeaderButton.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty HeaderButtonProperty =
+            DependencyProperty.Register("HeaderButton", typeof(UIElement), typeof(StickyNoteContainer), new PropertyMetadata(null));
+
+
+
         #endregion
 
         public StickyNoteContainer()

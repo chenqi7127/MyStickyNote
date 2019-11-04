@@ -4,28 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MyStickyNote.Views.StickyNotes"
-             mc:Ignorable="d" 
+             mc:Ignorable="d" HorizontalAlignment="Left" VerticalAlignment="Top"
              d:DesignHeight="500" d:DesignWidth="500">
     <UserControl.Resources>
-        <Style x:Key="IconFontButton" TargetType="Button">
-            <Setter Property="Background" Value="Transparent"></Setter>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Grid Width="30" Height="30">
-                            <Border Opacity="1" x:Name="bd" Background="{TemplateBinding Background}"></Border>
-                            <ContentPresenter Margin="{TemplateBinding Padding}"></ContentPresenter>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter TargetName="bd" Property="Background" Value="#4D6082"></Setter>
-                                <Setter TargetName="bd" Property="Opacity" Value="0.5"></Setter>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
         <Style TargetType="{x:Type Thumb}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -53,6 +34,7 @@
                 <Button Click="ChangeNoteStyle_Click" Style="{StaticResource IconFontButton}"  Padding="5" DockPanel.Dock="Right">
                     <TextBlock Foreground="{DynamicResource ButtonForegroundColor}" Style="{StaticResource FIcon}">&#xe676;</TextBlock>
                 </Button>
+                <ContentPresenter DockPanel.Dock="Right" Content="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=UserControl},Path=HeaderButton}"></ContentPresenter>
                 <Grid PreviewMouseLeftButtonDown="Title_DoubleClick" >
                     <TextBox Keyboard.KeyDown="FinishedInput" LostKeyboardFocus="QuitTitleEdit" Width="auto" Background="Transparent" BorderBrush="Transparent" x:Name="Title" 
                                  Foreground="{DynamicResource ButtonForegroundColor}" FontSize="16" VerticalAlignment="Center"></TextBox>

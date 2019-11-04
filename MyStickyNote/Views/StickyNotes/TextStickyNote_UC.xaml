@@ -7,8 +7,13 @@
              mc:Ignorable="d" >
     <Grid >
         <local:StickyNoteContainer Width="300" Height="300" x:Name="NoteTopPart">
+            <local:StickyNoteContainer.HeaderButton>
+                <Button Click="FinishTask_Click" Style="{StaticResource IconFontButton}"  Padding="5">
+                    <TextBlock Foreground="{DynamicResource ButtonForegroundColor}" Style="{StaticResource FIcon}">&#xe676;</TextBlock>
+                </Button>
+            </local:StickyNoteContainer.HeaderButton>
             <local:StickyNoteContainer.TextContent>
-                <RichTextBox FontSize="13.333" ></RichTextBox>
+                <RichTextBox  FontSize="13.333" ></RichTextBox>
             </local:StickyNoteContainer.TextContent>
         </local:StickyNoteContainer>
     </Grid>
