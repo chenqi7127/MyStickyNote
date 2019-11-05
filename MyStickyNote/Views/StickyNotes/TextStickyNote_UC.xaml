@@ -13,7 +13,8 @@
                 </Button>
             </local:StickyNoteContainer.HeaderButton>
             <local:StickyNoteContainer.TextContent>
-                <RichTextBox  FontSize="13.333" ></RichTextBox>
+                <RichTextBox Background="{DynamicResource ContentBackgroundColor}" 
+                             Margin="5" BorderThickness="0" FontSize="14" ></RichTextBox>
             </local:StickyNoteContainer.TextContent>
         </local:StickyNoteContainer>
     </Grid>

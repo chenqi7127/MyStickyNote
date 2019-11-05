@@ -134,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\NoteThemes\ThemeManager.cs" />
+    <Compile Include="ViewModels\TextNoteViewModel.cs" />
     <Compile Include="Views\StickyNotes\ControlAttachProperty.cs" />
     <Compile Include="Views\StickyNotes\DateNote\DateStickyNote.xaml.cs">
       <DependentUpon>DateStickyNote.xaml</DependentUpon>
@@ -186,7 +187,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CommonUnit\DataBaseTools\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="Views\StickyNotes\PaintNote\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

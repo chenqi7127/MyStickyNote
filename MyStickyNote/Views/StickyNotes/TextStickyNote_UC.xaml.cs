@@ -31,6 +31,12 @@ namespace MyStickyNote.StickyNotes
         {
             InitializeComponent();
             this.Loaded += TextStickyNote_UC_Loaded;
+            this.LostMouseCapture += TextStickyNote_UC_LostMouseCapture;
+        }
+
+        private void TextStickyNote_UC_LostMouseCapture(object sender, MouseEventArgs e)
+        {
+            IOHelp.Instance.SaveData(textNote);
         }
 
         private void TextStickyNote_UC_Loaded(object sender, RoutedEventArgs e)
@@ -50,7 +56,6 @@ namespace MyStickyNote.StickyNotes
         {
             textNote = new StickNoteBase();
             LoadNoteRichBox();
-            //IOHelp.Instance.SaveData(textNote);
         }
 
         private void FinishTask_Click(object sender, RoutedEventArgs e)

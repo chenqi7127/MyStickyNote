@@ -13,8 +13,7 @@ namespace MyStickyNote.Models.Models
         public StickNoteBase()
         {
             UUID = System.Guid.NewGuid().ToString("N");
-            //FilePath = @"D:\zhegeksd.txt";
-            FilePath = $@"{CommonString.SavePath}\{UUID}.json";
+            FilePath = $@"{CommonString.SavePath}\{Type.ToString()}_{UUID}.json";
             //TODO set note's theme state location title
         }
         #region 属性
@@ -80,6 +79,11 @@ namespace MyStickyNote.Models.Models
             get { return title; }
             set { title = value; RaisePropertyChanged("Title"); }
         }
+
+        /// <summary>
+        /// 是否修改过
+        /// </summary>
+        public bool IsModifyed { get; set; }
         #endregion
 
         public override string ToString()
@@ -87,9 +91,17 @@ namespace MyStickyNote.Models.Models
             return JsonConvert.SerializeObject(this);
         }
 
-        public void DeleteNote()
+        public virtual void DeleteNote()
         {
             IOHelp.Instance.DeleteData(this);
+        }
+
+        public virtual void SaveNote()
+        {
+            if (IsModifyed)
+            {
+                IOHelp.Instance.SaveData(this);
+            }
         }
     }
 
