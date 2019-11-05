@@ -5,11 +5,15 @@ using MyStickyNote.Models.Enums;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Windows;
+using System.Runtime.CompilerServices;
 
 namespace MyStickyNote.Models.Models
 {
     public class StickNoteBase: ViewModelBase
     {
+        //todo 在这里切换保存的方式
+        private DataHandleI dataHandle = IOHelp.Instance;
         public StickNoteBase()
         {
             UUID = System.Guid.NewGuid().ToString("N");
@@ -40,35 +44,41 @@ namespace MyStickyNote.Models.Models
             set { noteState = value; RaisePropertyChanged("NoteState"); }
         }
 
-        private double locationX;
+        private double nodeWidth;
         /// <summary>
         /// 便签的X轴坐标
         /// </summary>
-        public double LocationX
+        public double NodeWidth
         {
-            get { return locationX; }
-            set { locationX = value; RaisePropertyChanged("LocationX"); }
+            get { return nodeWidth; }
+            set { nodeWidth = value; RaisePropertyChanged("NodeWidth"); }
         }
 
-        private double locationY;
+        private double nodeHeight;
         /// <summary>
         /// 便签的Y轴坐标
         /// </summary>
-        public double LocationY
+        public double NodeHeight
         {
-            get { return locationY; }
-            set { locationY = value; RaisePropertyChanged("LocationY"); }
+            get { return nodeHeight; }
+            set { nodeHeight = value; RaisePropertyChanged("NodeHeight"); }
+        }
+        #region NoteMargin
+        private Thickness noteMargin = new Thickness(0);
+        public Thickness NoteMargin
+        {
+            get { return noteMargin; }
+            set
+            {
+                if (noteMargin != value)
+                {
+                    noteMargin = value; RaisePropertyChanged(nameof(NoteMargin));
+                }
+            }
+
         }
 
-        private Notetype type;
-        /// <summary>
-        /// 便签类型
-        /// </summary>
-        public Notetype Type
-        {
-            get { return type; }
-            set { type = value; RaisePropertyChanged("Type"); }
-        }
+        #endregion
 
         private string title;
         /// <summary>
@@ -79,6 +89,8 @@ namespace MyStickyNote.Models.Models
             get { return title; }
             set { title = value; RaisePropertyChanged("Title"); }
         }
+
+        public Notetype Type { get; set; }
 
         /// <summary>
         /// 是否修改过
@@ -93,15 +105,22 @@ namespace MyStickyNote.Models.Models
 
         public virtual void DeleteNote()
         {
-            IOHelp.Instance.DeleteData(this);
+            dataHandle.DeleteData(this);
         }
 
         public virtual void SaveNote()
         {
             if (IsModifyed)
             {
-                IOHelp.Instance.SaveData(this);
+                IsModifyed = false;
+                dataHandle.SaveData(this);
             }
+        }
+
+        public override void RaisePropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            this.IsModifyed = true;
+            base.RaisePropertyChanged(propertyName);
         }
     }
 

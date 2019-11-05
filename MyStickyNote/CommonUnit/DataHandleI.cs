@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace MyStickyNote.CommonUnit
 {
-    interface DataHandleI
+    public interface DataHandleI
     {
         string GetContent(string filePath);
 
-        List<string> GetContents(string folderPath);
+        Dictionary<string,string> GetContents(string folderPath);
 
         void SaveData(StickNoteBase needSave);
 

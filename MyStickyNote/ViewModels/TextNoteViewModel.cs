@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 
 namespace MyStickyNote.ViewModels
 {
-    class TextNoteViewModel: StickNoteBase
+     public class TextNoteViewModel: StickNoteBase
     {
         public string NoteContentPath { get; set; }
 
         public TextNoteViewModel():base()
         {
+            this.NodeWidth = 300;
+            this.NodeHeight = 300;
             NoteContentPath = $@"{CommonString.SavePath}\{UUID}_Note.json";
         }
         public override void DeleteNote()

@@ -29,13 +29,16 @@ namespace MyStickyNote.CommonUnit.FileTools
             return File.ReadAllText(filePath);
         }
 
-        public List<string> GetContents(string folderPath)
+        public Dictionary<string,string> GetContents(string folderPath)
         {
             CheckNeedCreateDirectory(folderPath);
-            List<string> res = new List<string>();
+            Dictionary<string, string> res = new Dictionary<string, string>();
             foreach (var item in new DirectoryInfo(folderPath).GetFiles())
             {
-                res.Add(GetContent(item.FullName));
+                if (!item.FullName.EndsWith("_Note.json"))
+                {
+                    res.Add(item.FullName, GetContent(item.FullName));
+                }
             }
             return res;
         }

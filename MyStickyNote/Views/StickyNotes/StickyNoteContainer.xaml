@@ -5,7 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MyStickyNote.Views.StickyNotes"
              mc:Ignorable="d" HorizontalAlignment="Left" VerticalAlignment="Top"
-             d:DesignHeight="500" d:DesignWidth="500">
+             d:DesignHeight="500" d:DesignWidth="500" 
+             Width="{Binding NodeWidth,Mode=TwoWay}" 
+             Height="{Binding NodeHeight,Mode=TwoWay}"
+             Margin="{Binding NoteMargin,Mode=TwoWay}">
     <UserControl.Resources>
         <Style TargetType="{x:Type Thumb}">
             <Setter Property="Template">
@@ -37,14 +40,13 @@
                 <ContentPresenter DockPanel.Dock="Right" Content="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=UserControl},Path=HeaderButton}"></ContentPresenter>
                 <Grid PreviewMouseLeftButtonDown="Title_DoubleClick" >
                     <TextBox Keyboard.KeyDown="FinishedInput" LostKeyboardFocus="QuitTitleEdit" Width="auto" Background="Transparent" BorderBrush="Transparent" x:Name="Title" 
-                                 Foreground="{DynamicResource ButtonForegroundColor}" FontSize="16" VerticalAlignment="Center"></TextBox>
+                               Text="{Binding Title,Mode=TwoWay}" Foreground="{DynamicResource ButtonForegroundColor}" FontSize="16" VerticalAlignment="Center"></TextBox>
                     <Thumb x:Name="AboveTitle" DragDelta="Move_DragDelta"></Thumb>
                 </Grid>
             </DockPanel>
             <Border x:Name="ContentBorder" Grid.Row="1" Background="{DynamicResource ContentBackgroundColor}"  BorderBrush="{DynamicResource ContentBorderBrushColor}" BorderThickness="1,0,1,1">
                 <Grid>
                     <Popup Placement="Top"  Width="{Binding ElementName=StickyNote,Path=ActualWidth}" Height="30">
-
                     </Popup>
                     <ContentPresenter Content="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=UserControl},Path=TextContent}"></ContentPresenter>
                 </Grid>

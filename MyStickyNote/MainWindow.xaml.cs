@@ -7,6 +7,10 @@ using Newtonsoft.Json;
 using MyStickyNote.Models.Models;
 using MyStickyNote.StickyNotes;
 using MyStickyNote.Views.StickyNotes;
+using MyStickyNote.Models.Enums;
+using System;
+using MyStickyNote.ViewModels;
+using System.IO;
 
 namespace MyStickyNote
 {
@@ -15,6 +19,7 @@ namespace MyStickyNote
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static DataHandleI DataHandle = IOHelp.Instance;
         public MainWindow()
         {
             InitializeComponent();
@@ -24,16 +29,30 @@ namespace MyStickyNote
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             //TODO load all notes if there is no note create a new textNote
-            var allNotes = IOHelp.Instance.GetContents(CommonString.SavePath);
+            var allNotes = DataHandle.GetContents(CommonString.SavePath);
+            //todo 这里最好改一下 用工厂来做 这里不管其他东西 只判断是否传入东西 不传入就是默认
             if (allNotes.Count == 0)
             {
-                AddNote();
+                AddNormalNote();
             }
-            foreach (var noteStr in allNotes)
+            foreach (var note in allNotes)
             {
-                var note = JsonConvert.DeserializeObject<StickNoteBase>(noteStr);
-                AddNote();
+                if (Path.GetFileName(note.Key).StartsWith(Notetype.NormalNote.ToString()))
+                {
+                    var noteBase = JsonConvert.DeserializeObject<TextNoteViewModel>(note.Value);
+                    AddNormalNote(noteBase);
+                }
             }
+        }
+
+        private void AddNormalNote(TextNoteViewModel noteBase = null)
+        {
+            TextStickyNote_UC sn = new TextStickyNote_UC(noteBase);
+            sn.OnAddNote = AddNote;
+            sn.OnRemoveNote = RemoveNote;
+            sn.GotMouseCapture += StickyNote_UC_GotMouseCapture;
+            //sn.LostMouseCapture+=
+            NotesGrid.Children.Add(sn);
         }
 
         private void RemoveNote(TextStickyNote_UC obj)
@@ -47,13 +66,7 @@ namespace MyStickyNote
 
         private void AddNote()
         {
-            TextStickyNote_UC sn = new TextStickyNote_UC();
-            sn.OnAddNote = AddNote;
-            sn.OnRemoveNote = RemoveNote;
-            sn.GotMouseCapture += StickyNote_UC_GotMouseCapture;
-            //todo 这里最好加上失去焦点的时候的操作 不用遍历全部便签
-            //sn.LostMouseCapture+=
-            NotesGrid.Children.Add(sn);
+            AddNormalNote(null);
             #region Add DateStickyNote
             //DateStickyNote sn = new DateStickyNote();
             ////sn.OnAddNote = AddNote;

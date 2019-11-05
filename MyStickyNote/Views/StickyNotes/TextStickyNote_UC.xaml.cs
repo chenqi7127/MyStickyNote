@@ -1,5 +1,6 @@
 ﻿using MyStickyNote.CommonUnit.FileTools;
 using MyStickyNote.Models.Models;
+using MyStickyNote.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,7 +24,7 @@ namespace MyStickyNote.StickyNotes
     /// </summary>
     public partial class TextStickyNote_UC : UserControl
     {
-        StickNoteBase textNote;
+        TextNoteViewModel vm;
         public Action OnAddNote;
         public Action<TextStickyNote_UC> OnRemoveNote;
         private RichTextBox NoteRichBox;
@@ -31,12 +32,35 @@ namespace MyStickyNote.StickyNotes
         {
             InitializeComponent();
             this.Loaded += TextStickyNote_UC_Loaded;
-            this.LostMouseCapture += TextStickyNote_UC_LostMouseCapture;
+            this.LostFocus += TextStickyNote_UC_LostFocus;
         }
 
-        private void TextStickyNote_UC_LostMouseCapture(object sender, MouseEventArgs e)
+        private void TextStickyNote_UC_LostFocus(object sender, RoutedEventArgs e)
         {
-            IOHelp.Instance.SaveData(textNote);
+            SaveNoteRichBox();
+            vm.SaveNote();
+        }
+
+        public TextStickyNote_UC(TextNoteViewModel tmvn) : this()
+        {
+            if (tmvn != null)
+                vm = tmvn;
+            else
+                vm = new TextNoteViewModel();
+            this.DataContext = vm;
+        }
+
+        private void SaveNoteRichBox()
+        {
+            if (vm.IsModifyed)
+            {
+                var textRange = new TextRange(NoteRichBox.Document.ContentStart, NoteRichBox.Document.ContentEnd);
+                using (FileStream fs = new FileStream(vm.NoteContentPath, FileMode.Create))
+                {
+                    textRange.Save(fs, DataFormats.Rtf);
+                }
+            }
+
         }
 
         private void TextStickyNote_UC_Loaded(object sender, RoutedEventArgs e)
@@ -49,13 +73,24 @@ namespace MyStickyNote.StickyNotes
         private void InitEvent()
         {
             NoteTopPart.OnAddNote = OnAddNote;
-            NoteTopPart.OnRemoveNote = () => { textNote.DeleteNote(); OnRemoveNote?.Invoke(this); };
+            NoteTopPart.OnRemoveNote = () => { vm.DeleteNote(); OnRemoveNote?.Invoke(this); };
         }
 
         private void InitDataContext()
         {
-            textNote = new StickNoteBase();
             LoadNoteRichBox();
+        }
+
+        private void LoadNoteRichBox()
+        {
+            if (File.Exists(vm.NoteContentPath))
+            {
+                var textRange = new TextRange(NoteRichBox.Document.ContentStart, NoteRichBox.Document.ContentEnd);
+                using (FileStream fs = new FileStream(vm.NoteContentPath, FileMode.Open, FileAccess.Read))
+                {
+                    textRange.Load(fs, DataFormats.Rtf);
+                }
+            }
         }
 
         private void FinishTask_Click(object sender, RoutedEventArgs e)
@@ -63,22 +98,9 @@ namespace MyStickyNote.StickyNotes
             NoteRichBox.Selection.ApplyPropertyValue(TextBlock.TextDecorationsProperty, TextDecorations.Strikethrough);
         }
 
-        private void SaveNoteRichBox()
+        private void RichTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var textRange = new TextRange(NoteRichBox.Document.ContentStart, NoteRichBox.Document.ContentEnd);
-            using (FileStream fs = new FileStream(@"D:\text.rtf",FileMode.Create))
-            {
-                textRange.Save(fs, DataFormats.Rtf);
-            }
-        }
-
-        private void LoadNoteRichBox()
-        {
-            var textRange = new TextRange(NoteRichBox.Document.ContentStart, NoteRichBox.Document.ContentEnd);
-            using (FileStream fs = new FileStream(@"D:\text.rtf", FileMode.Open,FileAccess.Read))
-            {
-                textRange.Load(fs, DataFormats.Rtf);
-            }
+            vm.IsModifyed = true;
         }
     }
 }
