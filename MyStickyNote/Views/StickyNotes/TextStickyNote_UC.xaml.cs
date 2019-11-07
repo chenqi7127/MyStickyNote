@@ -95,7 +95,13 @@ namespace MyStickyNote.StickyNotes
 
         private void FinishTask_Click(object sender, RoutedEventArgs e)
         {
-            NoteRichBox.Selection.ApplyPropertyValue(TextBlock.TextDecorationsProperty, TextDecorations.Strikethrough);
+            var decorations = NoteRichBox.Selection.GetPropertyValue(TextBlock.TextDecorationsProperty);
+            if (decorations == TextDecorations.Strikethrough)
+            {
+                NoteRichBox.Selection.ApplyPropertyValue(TextBlock.TextDecorationsProperty, null);
+            }
+            else
+                NoteRichBox.Selection.ApplyPropertyValue(TextBlock.TextDecorationsProperty, TextDecorations.Strikethrough);
         }
 
         private void RichTextBox_TextChanged(object sender, TextChangedEventArgs e)

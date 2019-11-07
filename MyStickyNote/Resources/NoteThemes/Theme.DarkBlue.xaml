@@ -1,8 +1,14 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:MyStickyNote.NoteThemes">
+    <!--便签标题背景颜色-->
     <SolidColorBrush x:Key="TitleBackgroundColor">#007ACC</SolidColorBrush>
+    <!--便签标题背景失焦颜色-->
+    <SolidColorBrush x:Key="TitleLostFocusColor">gray</SolidColorBrush>
+    <!--便签内容背景颜色-->
     <SolidColorBrush x:Key="ContentBackgroundColor">#C4E5FF</SolidColorBrush>
+    <!--便签字体颜色-->
     <SolidColorBrush x:Key="ButtonForegroundColor">#FFFFFF</SolidColorBrush>
+    <!--便签边框颜色-->
     <SolidColorBrush x:Key="ContentBorderBrushColor">#9E9EA0</SolidColorBrush>
 </ResourceDictionary>

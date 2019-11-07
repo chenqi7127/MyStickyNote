@@ -27,7 +27,17 @@
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <DockPanel Height="30" x:Name="NoteTitle" Background="{DynamicResource TitleBackgroundColor}" LastChildFill="True">
+            <DockPanel Height="30" x:Name="NoteTitle" LastChildFill="True">
+                <DockPanel.Style>
+                    <Style TargetType="DockPanel">
+                        <Setter Property="Background" Value="{DynamicResource TitleBackgroundColor}"></Setter>
+                        <!--<Style.Triggers>
+                            <Trigger Property="IsFocused" Value="false">
+                                <Setter Property="Background" Value="{DynamicResource TitleLostFocusColor}"  ></Setter>
+                            </Trigger>
+                        </Style.Triggers>-->
+                    </Style>
+                </DockPanel.Style>
                 <Button Click="AddNote_Click" Style="{StaticResource IconFontButton}"  Padding="5" DockPanel.Dock="Left">
                     <TextBlock Foreground="{DynamicResource ButtonForegroundColor}" Style="{StaticResource FIcon}">&#xe514;</TextBlock>
                 </Button>
